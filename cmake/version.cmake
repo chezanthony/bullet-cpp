@@ -1,0 +1,12 @@
+file(READ ${CMAKE_SOURCE_DIR}/VERSION BULLET_CPP_VERSION_STRING)
+string(STRIP ${BULLET_CPP_VERSION_STRING} BULLET_CPP_VERSION_STRING)
+
+set(BULLET_CPP_VERSION_STRING "${BULLET_CPP_VERSION_STRING}" PARENT_SCOPE)
+
+configure_file(
+  ${CMAKE_SOURCE_DIR}/bullet-cpp-version.h.in
+  ${CMAKE_BINARY_DIR}/generated/bullet-cpp-version.h
+  @ONLY
+)
+
+include_directories(${CMAKE_BINARY_DIR})
