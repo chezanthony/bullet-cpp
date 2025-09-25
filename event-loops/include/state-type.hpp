@@ -72,7 +72,7 @@ enum class StateType : std::uint16_t
   UserState19,
   UserState20,
 
-  Unknown = std::numeric_limits<std::uint16_t>::max();
+  Unknown = std::numeric_limits<std::uint16_t>::max(),
 };
 
 } // core

@@ -10,7 +10,7 @@ using std::vector;
 using event_loops::core::EventType;
 using event_loops::oop::Event;
 
-TEST(EventTest, VerifyEventType)
+TEST(EventTest, VerifyEventTypeAndPayload)
 {
   vector<EventType> eventTypes = {
     // System Events
@@ -92,10 +92,9 @@ TEST(EventTest, VerifyEventType)
 
   for (auto eventType : eventTypes)
   {
-    // Event event(eventType);
     Event event(eventType, nTestPayload);
     ASSERT_EQ(eventType, event.getEventType());
-    ASSERT_EQ(nTestPayload, event.getPayload<int>());
+    ASSERT_EQ(nTestPayload, event.getPayloadAs<int>());
   }
 }
 
@@ -104,7 +103,7 @@ TEST(EventTest, VerifyIntPayload)
   const int nTestPayload(100);
   Event testEvent(EventType::NetDataReceived, nTestPayload);
 
-  const int nActualPayload = testEvent.getPayload<int>();
+  const int nActualPayload = testEvent.getPayloadAs<int>();
 
   ASSERT_EQ(nTestPayload, nActualPayload);
   ASSERT_EQ(typeid(nTestPayload).name(), typeid(nActualPayload).name());
@@ -115,7 +114,7 @@ TEST(EventTest, VerifyIntVectorPayload)
   const vector<int> testPayload{1, 2, 3, 4, 5};
   Event testEvent(EventType::NetDataReceived, testPayload);
 
-  const vector<int> actualPayload = testEvent.getPayload<vector<int>>();
+  const vector<int> actualPayload = testEvent.getPayloadAs<vector<int>>();
 
   ASSERT_EQ(testPayload, actualPayload);
   ASSERT_EQ(typeid(testPayload).name(), typeid(actualPayload).name());
@@ -138,7 +137,7 @@ TEST(EventTest, VerifyCustomTypePayload)
   const TestStruct testPayload{45, 5, {'H', 'e', 'l', 'l', 'o'}};
   Event testEvent(EventType::NetDataReceived, testPayload);
 
-  const TestStruct actualPayload = testEvent.getPayload<TestStruct>();
+  const TestStruct actualPayload = testEvent.getPayloadAs<TestStruct>();
 
   ASSERT_EQ(testPayload, actualPayload);
   ASSERT_EQ(typeid(testPayload).name(), typeid(actualPayload).name());

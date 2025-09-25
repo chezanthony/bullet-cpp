@@ -1,3 +1,6 @@
+#ifndef MOCK_EVENT_SUBSCRIBER_H
+#define MOCK_EVENT_SUBSCRIBER_H
+
 #include <gmock/gmock.h>
 #include "ievent-subscriber.hpp"
 #include "event-type.hpp"
@@ -17,3 +20,5 @@ public:
 } // oop
 
 } // event_loops
+
+#endif // !MOCK_EVENT_SUBSCRIBER_H

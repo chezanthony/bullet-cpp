@@ -3,6 +3,7 @@ add_executable(bullet_tests
   test_dummy.cc
   event-test.cc
   event-manager-test.cc
+  state-machine-test.cc
 )
 
 target_link_libraries(bullet_tests 

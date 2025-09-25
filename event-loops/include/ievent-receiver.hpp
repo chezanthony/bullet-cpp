@@ -13,7 +13,7 @@ class IEventReceiver
 {
 public:
   virtual ~IEventReceiver(void) = default;
-  virtual void publishEvent(event_loops::oop::Event& event) = 0;
+  virtual void publishEvent(const event_loops::oop::Event& event) = 0;
 };
 
 } // oop

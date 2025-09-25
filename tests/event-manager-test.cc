@@ -64,7 +64,7 @@ protected:
 
 TEST_F(EventManagerTest, VerifyPublishEventStoresEvent)
 {
-  size_t nCurrentCount = 0;
+  size_t nCurrentCount(0);
 
   for (auto currentEvent : m_theEvents)
   {
@@ -81,7 +81,7 @@ TEST_F(EventManagerTest, VerifyPublishEventStoresEvent)
 
 TEST_F(EventManagerTest, VerifyHandleEventsDoNotCrashWhenQueueEmpty)
 {
-  const size_t nExpectedEventCount = 0;
+  const size_t nExpectedEventCount(0);
   const size_t nActualEventCount = m_eventManager.getPendingEventCount();
 
   ASSERT_EQ(nExpectedEventCount, nActualEventCount);
@@ -104,8 +104,8 @@ TEST_F(EventManagerTest, VerifyHandleEventsCallRegisteredSubscribers)
 
 TEST_F(EventManagerTest, VerifyHandleEventsReturnsTrueWhenQueueEmpty)
 {
-  const size_t nExpectedEventCount = 0;
-  const size_t nActualEventCount = m_eventManager.getPendingEventCount();
+  const size_t nExpectedEventCount(0);
+  const size_t nActualEventCount(m_eventManager.getPendingEventCount());
 
   ASSERT_EQ(nExpectedEventCount, nActualEventCount);
   
@@ -119,20 +119,20 @@ TEST_F(EventManagerTest, VerifyHandleEventsRemovesEventInFrontOfQueue)
     m_eventManager.publishEvent(currentEvent);
   }
 
-  size_t nCurrentCount = m_eventManager.getPendingEventCount();
+  size_t nCurrentCount(m_eventManager.getPendingEventCount());
 
   while (0 != m_eventManager.getPendingEventCount())
   {
     m_eventManager.handleEvents();
     --nCurrentCount;
 
-    const size_t nActualEventCount = m_eventManager.getPendingEventCount();
+    const size_t nActualEventCount(m_eventManager.getPendingEventCount());
 
     ASSERT_EQ(nCurrentCount, nActualEventCount);
 
-    const size_t nCurrentIndex = 4 - nCurrentCount;
-    const Event currentEvent = m_theEvents.at(nCurrentIndex);
-    const EventType expectedRemovedType = currentEvent.getEventType();
+    const size_t nCurrentIndex(4 - nCurrentCount);
+    const Event currentEvent(m_theEvents.at(nCurrentIndex));
+    const EventType expectedRemovedType(currentEvent.getEventType());
     
     ASSERT_FALSE(m_eventManager.hasEventOfType(expectedRemovedType));
   }

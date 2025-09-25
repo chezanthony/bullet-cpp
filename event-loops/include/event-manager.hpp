@@ -7,12 +7,6 @@
 #include <deque>
 #include "ievent-receiver.hpp"
 
-using std::vector;
-using std::unique_ptr;
-using std::shared_ptr;
-using std::deque;
-using std::size_t;
-
 namespace event_loops
 {
 
@@ -34,18 +28,18 @@ public:
   EventManager(void);
   ~EventManager(void);
 
-  void publishEvent(event_loops::oop::Event& event) override;
+  void publishEvent(const event_loops::oop::Event& event) override;
   bool handleEvents(void);
-  void registerSubscriber(shared_ptr<IEventSubscriber> subscriber);
+  void registerSubscriber(std::shared_ptr<IEventSubscriber> subscriber);
 
   // test functions
-  size_t getPendingEventCount(void) const;
-  size_t getRegisteredSubscriberCount(void) const;
+  std::size_t getPendingEventCount(void) const;
+  std::size_t getRegisteredSubscriberCount(void) const;
   bool hasEventOfType(event_loops::core::EventType type) const;
 
 private:
-  vector<shared_ptr<IEventSubscriber>> m_eventSubscribers;
-  deque<Event> m_eventQueue;
+  std::vector<std::shared_ptr<IEventSubscriber>> m_eventSubscribers;
+  std::deque<Event> m_eventQueue;
 };
 
 } // oop

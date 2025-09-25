@@ -3,6 +3,8 @@
 #include "event.hpp"
 #include "ievent-subscriber.hpp"
 
+using std::shared_ptr;
+
 namespace event_loops
 {
 
@@ -17,7 +19,7 @@ EventManager::~EventManager(void)
 {
 }
 
-void EventManager::publishEvent(Event& event)
+void EventManager::publishEvent(const Event& event)
 {
   m_eventQueue.push_back(event);
 }

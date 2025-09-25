@@ -5,6 +5,7 @@ target_sources(bullet-cpp
     src/oop.cpp
     src/event.cpp
     src/event-manager.cpp
+    src/state-machine.cpp
 )
 
 target_include_directories(bullet-cpp
