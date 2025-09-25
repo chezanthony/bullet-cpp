@@ -23,6 +23,20 @@ In this type, entities are stored in a contiguous memory block and differences i
 Virtual inheritance is avoided as much as possible.
 Entities are accessed by indexing on an array as opposed to jumping to an arbitrary memory in heap.
 
+# Building From Source
+To build the library from the source code, run the following from the project root directory:
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+# Running Tests
+To run the tests, make sure the project has been built (see instructions above).
+Then, run the following from the project root directory:
+```bash
+ctest --test-dir build
+```
+
 # Project Info
 > TODO: Move this to a more appropriate file.
 **Project Creator & Maintainer**: Chez Anthony Intud (github.com/chezanthony)
